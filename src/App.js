@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import dataBase from "./assets/products.json";
+import "./App.css";
+import Header from "./components/Header";
+import ProductsPage from "./pages/ProductsPage";
+import AccountPage from "./pages/AccountPage";
+import ErrorPage from "./pages/ErrorPage";
+import HomePage from "./pages/HomePage";
+import Footer from "./components/Footer";
+import { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [isLogin, setIsLogin] = useState(false);
+
+	return (
+		<BrowserRouter>
+			<div className="body">
+				<Header isLogin={isLogin} setIsLogin={setIsLogin} />
+			</div>
+			<Routes>
+				<Route path="/" element={<HomePage dataBase={dataBase} />} />
+				<Route path="/products" element={<ProductsPage dataBase={dataBase} />} />
+				{isLogin && <Route path="/account" element={<AccountPage />} />}
+				<Route path="/*" element={<ErrorPage />} />
+			</Routes>
+			{isLogin && (
+				<div>
+					<Footer />
+				</div>
+			)}
+		</BrowserRouter>
+	);
 }
 
 export default App;
