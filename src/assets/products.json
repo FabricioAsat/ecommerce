@@ -2,7 +2,7 @@
 	{
 		"_id": "627bffc0bc13d93a8a8d9258",
 		"isActive": true,
-		"balance": "1,723.29",
+		"balance": 1723.29,
 		"picture": "http://placekitten.com/100/100",
 		"age": 8,
 		"name": "Avis",
@@ -20,7 +20,7 @@
 	{
 		"_id": "627bffc024f500f8afb5017b",
 		"isActive": true,
-		"balance": "1,988.80",
+		"balance": 1988.8,
 		"picture": "http://placekitten.com/100/100",
 		"age": 5,
 		"name": "Martha",
@@ -65,7 +65,7 @@
 	{
 		"_id": "627bffc0d6c2f419dfdd4dfa",
 		"isActive": true,
-		"balance": "1,135.89",
+		"balance": 1135.89,
 		"picture": "http://placekitten.com/100/100",
 		"age": 5,
 		"name": "Hendricks",
@@ -101,7 +101,7 @@
 	{
 		"_id": "627bffc050456a67690585b4",
 		"isActive": true,
-		"balance": "1,046.81",
+		"balance": 1046.81,
 		"picture": "http://placekitten.com/100/100",
 		"age": 4,
 		"name": "Hartman",
@@ -128,7 +128,7 @@
 	{
 		"_id": "627bffc0186c9a6f662c3b8a",
 		"isActive": true,
-		"balance": "1,529.22",
+		"balance": 1529.22,
 		"picture": "http://placekitten.com/100/100",
 		"age": 3,
 		"name": "Pam",
@@ -137,7 +137,7 @@
 	{
 		"_id": "627bffc0c3c36bb8620e28f7",
 		"isActive": true,
-		"balance": "1,726.05",
+		"balance": 1726.05,
 		"picture": "http://placekitten.com/100/100",
 		"age": 3,
 		"name": "Colleen",
@@ -146,7 +146,7 @@
 	{
 		"_id": "627bffc09307fdedbc58c177",
 		"isActive": true,
-		"balance": "1,156.56",
+		"balance": 1156.56,
 		"picture": "http://placekitten.com/100/100",
 		"age": 8,
 		"name": "Whitley",

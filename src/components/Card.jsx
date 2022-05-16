@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ id, url, name, price, age, handleProdComprados, removeItem, onCarrito = true }) => {
 	const handleClick = (e) => {
-		handleProdComprados(id);
+		handleProdComprados(id, price);
 	};
 
 	return (
@@ -30,7 +30,7 @@ const Card = ({ id, url, name, price, age, handleProdComprados, removeItem, onCa
 			) : (
 				<button
 					className="text-slate-300 text-xl my-auto font-bold text-center"
-					onClick={() => removeItem(id)}>
+					onClick={() => removeItem(id, price)}>
 					X
 				</button>
 			)}

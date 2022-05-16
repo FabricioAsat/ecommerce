@@ -12,23 +12,27 @@ import { useEffect, useState } from "react";
 function App() {
 	const [isLogin, setIsLogin] = useState(false);
 	const [prodComprados, setProdComprados] = useState([]);
+	const [precio, setPrecio] = useState(0);
 
 	useEffect(() => {
-		if (!isLogin) setProdComprados([]);
+		if (!isLogin) {
+			setProdComprados([]);
+			setPrecio(0);
+		}
 	}, [isLogin]);
 
-	const handleProdComprados = (value) => {
+	const handleProdComprados = (id, price) => {
 		if (!isLogin) {
 			return;
 		}
-		setProdComprados([...prodComprados, value]);
+		setProdComprados([...prodComprados, id]);
+		setPrecio(Math.round((precio + parseFloat(price)) * 100) / 100);
 	};
 
-	const removeItem = (id) => {
+	const removeItem = (id, price) => {
 		setProdComprados(prodComprados.filter((idProd) => id !== idProd));
+		setPrecio(Math.round((precio - parseFloat(price)) * 100) / 100);
 	};
-
-	console.log(prodComprados);
 
 	return (
 		<BrowserRouter>
@@ -62,7 +66,14 @@ function App() {
 				<Route path="/*" element={<ErrorPage />} />
 			</Routes>
 			{isLogin && (
-				<Footer prodComprados={prodComprados} dataBase={dataBase} removeItem={removeItem} />
+				<Footer
+					prodComprados={prodComprados}
+					dataBase={dataBase}
+					removeItem={removeItem}
+					precio={precio}
+					setPrecio={setPrecio}
+					setProdComprados={setProdComprados}
+				/>
 			)}
 		</BrowserRouter>
 	);

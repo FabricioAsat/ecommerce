@@ -2,7 +2,7 @@ const infoUser = {
 	name: "",
 	pass: "",
 	email: "",
-	money: 0,
+	money: 0.0,
 };
 
 export function setName(value) {
@@ -15,7 +15,7 @@ export function setEmail(value) {
 	infoUser.email = value;
 }
 export function setMoney(value) {
-	infoUser.money = value;
+	infoUser.money = Math.round(value * 100) / 100;
 }
 
 export function getName() {

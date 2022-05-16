@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getMoney, setMoney } from "../assets/infoUser";
 import Card from "./Card";
 
-const Footer = ({ prodComprados, dataBase, removeItem }) => {
+const Footer = ({ prodComprados, setProdComprados, dataBase, removeItem, precio, setPrecio }) => {
 	const [agregar, setAgregar] = useState(false);
 	const [miCarrito, setMiCarrito] = useState(false);
 	const [monto, setMonto] = useState(0);
+	const [montoInsuficiente, setMontoInsuficiente] = useState(false);
 
 	const insertarMonto = () => {
 		if (monto <= 0 || !monto) return;
@@ -13,6 +14,23 @@ const Footer = ({ prodComprados, dataBase, removeItem }) => {
 		setMoney(getMoney() + monto);
 		setAgregar(false);
 	};
+
+	const realizarCompra = () => {
+		if (prodComprados.length === 0) return;
+
+		if (getMoney() < precio) {
+			setMontoInsuficiente(true);
+			return;
+		}
+
+		setMoney(getMoney() - precio);
+		setProdComprados([]);
+		setMiCarrito(false);
+		setPrecio(0);
+		setMontoInsuficiente(false);
+	};
+
+	useEffect(() => {}, []);
 
 	const handleChange = (e) => {
 		try {
@@ -30,6 +48,7 @@ const Footer = ({ prodComprados, dataBase, removeItem }) => {
 
 	const cerrarCarrito = () => {
 		setMiCarrito(false);
+		setMontoInsuficiente(false);
 	};
 
 	const abrirCarrito = () => {
@@ -75,24 +94,49 @@ const Footer = ({ prodComprados, dataBase, removeItem }) => {
 			)}
 			{miCarrito && (
 				<div className="fixed top-0 h-full w-full flex flex-col items-start bg-black/90 px-8 py-12 select-none overflow-y-scroll ">
-					{dataBase.map(
-						(product) =>
-							prodComprados.includes(product._id) && (
-								<Card
-									key={product._id}
-									id={product._id}
-									url={product.picture}
-									name={product.name}
-									price={product.balance}
-									age={product.age}
-									onCarrito={false}
-									removeItem={removeItem}
-								/>
-							)
+					{prodComprados.length > 0 ? (
+						<>
+							<h2 className="text-slate-300 text-4xl font-bold text-center w-11/12">
+								Productos en carrito
+							</h2>
+							{dataBase.map(
+								(product) =>
+									prodComprados.includes(product._id) && (
+										<Card
+											key={product._id}
+											id={product._id}
+											url={product.picture}
+											name={product.name}
+											price={product.balance}
+											age={product.age}
+											onCarrito={false}
+											removeItem={removeItem}
+										/>
+									)
+							)}
+						</>
+					) : (
+						<h2 className="text-slate-300 text-4xl font-bold text-center w-11/12">
+							Tu carrito está vacío
+						</h2>
 					)}
+					<div className="bg-slate-300 flex justify-around items-center fixed font-bold bottom-0 h-12 w-full left-0">
+						<h2 className="font-bold">Total a pagar: $ {precio}</h2>
+						<button className="font-bold border-b-2 border-slate-700" onClick={realizarCompra}>
+							Comprar
+						</button>
+					</div>
 					<button className="text-slate-300 fixed font-bold right-8" onClick={cerrarCarrito}>
 						X
 					</button>
+
+					{montoInsuficiente && (
+						<div className="fixed bottom-12 w-full left-0 bg-red-600">
+							<h2 className="text-center font-bold text-2xl m-4 text-slate-300">
+								Saldo insuficiente
+							</h2>
+						</div>
+					)}
 				</div>
 			)}
 		</>
