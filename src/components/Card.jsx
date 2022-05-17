@@ -6,7 +6,7 @@ const Card = ({ id, url, name, price, age, handleProdComprados, removeItem, onCa
 	};
 
 	return (
-		<div className="flex justify-between items-end mx-8">
+		<div className="flex justify-between items-end mx-8 w-80">
 			<figure className="flex my-4 mx-4 justify-start items-center">
 				<img src={url} alt={name} />
 				<div className="mx-4">

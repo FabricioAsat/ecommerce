@@ -73,7 +73,7 @@ const Footer = ({ prodComprados, setProdComprados, dataBase, removeItem, precio,
 					<h2 className="text-slate-300 text-xl mx-auto mb-4 text-center">
 						Agregar desde #### #### #### #123
 					</h2>
-					<h2 className="text-slate-300">Cuánto dinero desea depositar:</h2>
+					<h2 className="text-slate-300 mx-auto">Cuánto dinero desea depositar:</h2>
 					<div className=" mx-auto my-auto">
 						<input
 							className="input-form "
@@ -99,21 +99,23 @@ const Footer = ({ prodComprados, setProdComprados, dataBase, removeItem, precio,
 							<h2 className="text-slate-300 text-4xl font-bold text-center w-11/12">
 								Productos en carrito
 							</h2>
-							{dataBase.map(
-								(product) =>
-									prodComprados.includes(product._id) && (
-										<Card
-											key={product._id}
-											id={product._id}
-											url={product.picture}
-											name={product.name}
-											price={product.balance}
-											age={product.age}
-											onCarrito={false}
-											removeItem={removeItem}
-										/>
-									)
-							)}
+							<div className="p-8 gridResponsive w-full">
+								{dataBase.map(
+									(product) =>
+										prodComprados.includes(product._id) && (
+											<Card
+												key={product._id}
+												id={product._id}
+												url={product.picture}
+												name={product.name}
+												price={product.balance}
+												age={product.age}
+												onCarrito={false}
+												removeItem={removeItem}
+											/>
+										)
+								)}
+							</div>
 						</>
 					) : (
 						<h2 className="text-slate-300 text-4xl font-bold text-center w-11/12">
